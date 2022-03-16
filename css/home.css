@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #f5f5f5;
+}
+
+/* header */
+
+#header{
+    padding-left: 190px;
+}
+
+/* form */
+
+#form-search{
+  margin: auto;
+}
+
+#searchbar{
+    width: 700px;
+}
+
+#singin{
+    padding-left: 125px;
+}
+
+#signup{
+    padding-left: 350px;
+}

@@ -1,0 +1,100 @@
+.user-cabinet-header {
+    font-size: 20px;
+}
+.site-header {
+    border-bottom: 1px solid #26a69a;
+    padding: 25px 0;
+}
+.site-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.modal-wrap {
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.5);
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.modal-project {
+    position: relative;
+    width: 250px;
+    /* height: 320px; */
+    border: 1px solid #26a69a;
+    border-radius: 12px;
+    box-shadow: 1px 1px 10px #1d1d1d;
+    padding: 10px;
+    background: #fff;   
+    -webkit-order: 0;
+    -ms-flex-order: 0;
+    order: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    align-self: auto; 
+}
+
+.modal-project-close {
+    position: absolute;
+    right: -20px;
+    top: -20px;
+}
+
+.form-slider {
+    width: 700px;
+    height: 340px;
+    /* background: bisque; */
+    margin-left: 0;
+    transition: all ease 1s;
+}
+
+.left-50, .right-50 {
+    width: 50%;
+    float: left;
+    /* background: red; */
+    min-height: 50px;
+    padding: 10px;
+}
+
+.right-50 {
+    /* background: green; */
+    min-height: 50px;
+    max-height: 430px;
+    overflow-y: scroll;
+}
+
+.read-rules {
+    cursor: pointer;
+}
+
+.sign-up-modal {
+    width: 370px;
+}
+
+.form-slider-wrapper {
+    overflow: hidden;
+}

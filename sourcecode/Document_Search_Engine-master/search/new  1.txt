@@ -1,0 +1,627 @@
+#include <stdio.h>
+#include <malloc.h>
+
+#define INFINITY 9999999;
+
+struct freememory
+{
+    int starting,ending;
+    struct freememory *next;
+}*fm1,*headfree,*tempfree,*prevfree;
+
+struct usedmemory
+{
+    int memory,starting,ending;
+    int pid;
+    struct usedmemory *next;
+}*um1,*headused,*tempused,*prevused;
+
+void travelfree()
+{
+    if(headfree==NULL)
+    {
+        printf("No Any Free Space Available\n");
+    }
+    else
+    {
+        tempfree=headfree;
+        do
+        {
+            printf("(%d,%d) -> ",tempfree->starting,tempfree->ending);
+            tempfree=tempfree->next;
+        }while(tempfree!=NULL);
+    }
+}
+
+void sendfree(struct freememory *a) /* to arrange */
+{
+    if(headfree->next==NULL)
+    {
+        if(headfree->starting<a->starting)
+        {
+        headfree->next=a;
+        }
+        else
+        {
+        a->next=headfree;
+        headfree=a;
+        }
+        return;
+    }
+    else
+    {
+        tempfree=headfree;
+        if((a->starting)<(headfree->starting))
+        {
+            headfree=a;
+            headfree->next=tempfree;
+        }
+        else
+        {
+            printf("ENTERED1");
+            while((tempfree->starting)<(a->starting) && tempfree->next!=NULL)
+            {
+                prevfree=tempfree;
+                tempfree=tempfree->next;
+            }
+            printf("ENTERED2");
+            if(tempfree->next==NULL && (tempfree->starting)<(a->starting))
+            {
+                tempfree->next=a;
+            }
+            else if(tempfree->next==NULL && (tempfree->starting)>(a->starting))
+            {
+                prevfree->next=a;
+                a->next=tempfree;
+            }
+            else
+            {
+                printf("ENTERED2");
+                prevfree->next=a;
+                a->next=tempfree;
+            }
+        }
+    }
+}
+
+void allocatfree(int b,int c)
+{
+    if(headfree==NULL)
+    {
+        headfree=(struct freememory * )malloc(sizeof(struct freememory));
+        headfree->starting=b;
+        headfree->ending=c;
+        headfree->next=NULL;
+    }
+    else
+    {
+        fm1 = (struct freememory *)malloc(sizeof(struct freememory));
+        fm1->starting=b;
+        fm1->ending=c;
+        fm1->next=NULL;
+        sendfree(fm1);
+    }
+    return;
+}
+
+void travelused()
+{
+    if(headused==NULL)
+    {
+        printf("No Any Free Space Available\n");
+    }
+    else
+    {
+        tempused=headused;
+        do
+        {
+            printf("(%d,%d,%d,%d) -> ",tempused->pid,tempused->memory,tempused->starting,tempused->ending);
+            tempused=tempused->next;
+        }while(tempused!=NULL);
+    }
+}
+
+void sendused(struct usedmemory * a)
+{
+    if(headused->next==NULL)
+    {
+        headused->next=a;
+        return;
+    }
+    else
+    {
+        tempused=headused;
+        if((a->starting)<(headused->starting))
+        {
+            a->next=tempused;
+            headused=a;
+        }
+        else
+        {
+            printf("ENTERED1");
+            while((tempused->starting)<(a->starting) && tempused->next!=NULL)
+            {
+                prevused=tempused;
+                tempused=tempused->next;
+            }
+            printf("ENTERED2");
+            if(tempused->next==NULL && (tempused->starting)<(a->starting))
+            {
+                tempused->next=a;
+            }
+            else if(tempused->next==NULL && (tempused->starting)>(a->starting))
+            {
+                prevused->next=a;
+                a->next=tempused;
+            }
+            else
+            {
+                printf("ENTERED2");
+                prevused->next=a;
+                a->next=tempused;
+            }
+        }
+    }
+}
+
+void allocateused(int b,int c,int d,int e)
+{
+    if(headused==NULL)
+    {
+        headused=(struct usedmemory * )malloc(sizeof(struct usedmemory));
+        headused->pid=e;
+        headused->memory=d;
+        headused->starting=b;
+        headused->ending=c;
+        headused->next=NULL;
+    }
+    else
+    {
+        um1 = (struct usedmemory *)malloc(sizeof(struct usedmemory));
+        um1->pid=e;
+        um1->memory=d;
+        um1->starting=b;
+        um1->ending=c;
+        um1->next=NULL;
+        sendused(um1);
+    }
+    return;
+}
+
+int findfree(int a,int b,int c)
+{
+    int x,y,z;
+    if(b==1)
+    {
+        if(headfree==NULL)
+        {
+            printf("\nNo Free Memory");
+            return 1;
+        }
+        else
+        {
+            tempfree=headfree;
+            if(tempfree->ending-tempfree->starting>=a)
+            {
+                if(tempfree->next==NULL)
+                {
+                    headfree=NULL;
+                    allocateused(tempfree->starting,tempfree->ending,a,c);
+                    printf("Allocated : %d - %d\n",tempfree->starting,tempfree->ending);
+                    return 1;
+                }
+                else
+                {
+                    headfree=tempfree->next;
+                    allocateused(tempfree->starting,tempfree->ending,a,c);
+                    printf("Allocated : %d - %d\n",tempfree->starting,tempfree->ending);
+                    return 1;
+                }
+            }
+            while(tempfree->next!=NULL && (tempfree->ending-tempfree->starting<a))
+            {
+                prevfree=tempfree;
+                tempfree=tempfree->next;
+            }
+            if(tempfree->next!=NULL)
+            {
+                printf("Allocated : %d - %d\n",tempfree->starting,tempfree->ending);
+                allocateused(tempfree->starting,tempfree->ending,a,c);
+                prevfree->next=tempfree->next;
+                return 1;
+            }
+            else if(tempfree->next==NULL && (tempfree->ending-tempfree->starting<a))
+            {
+                printf("\nNo Space Available.\n");
+                return 0;
+            }
+            else if(tempfree->next==NULL && (tempfree->ending-tempfree->starting>=a))
+            {
+                printf("Allocated : %d - %d\n",tempfree->starting,tempfree->ending);
+                allocateused(tempfree->starting,tempfree->ending,a,c);
+                prevfree->next=NULL;
+                return 1;
+            }
+        }
+        return 1;
+    }
+    else if(b==2)
+    {
+        if(headfree==NULL)
+        {
+            printf("\nNo Free Space Available\n");
+            return 1;
+        }
+        else
+        {
+            tempfree=headfree;
+            if(tempfree->next==NULL)
+            {
+                if((tempfree->ending-tempfree->starting) >=a)
+                {
+                    x=tempfree->ending-tempfree->starting;
+                    allocateused(headfree->starting,headfree->ending,a,c);
+                    headfree=NULL;
+                    return 1;
+                }
+                else
+                {
+                    printf("\nNo Free Space Available\n");
+                    return 1;
+                }
+            }
+            else
+            {
+                x=INFINITY;
+                prevfree=NULL;
+                do
+                {
+                    y=tempfree->ending-tempfree->starting;
+                    if(x>=y && y>=a)
+                    {
+                        x=y;
+                        prevfree=tempfree;
+                    }
+                    tempfree=tempfree->next;
+                }while(tempfree!=NULL);
+
+                if(prevfree==NULL)
+                {
+                    printf("\nNo Free Space Available\n");
+                    return 0;
+                }
+                else
+                {
+                    allocateused(prevfree->starting,prevfree->ending,a,c);
+                    tempfree=headfree;
+                    if(prevfree==headfree)
+                    {
+                        headfree=prevfree->next;
+                        return 1;
+                    }
+                    else
+                    {
+                        while(tempfree->next!=prevfree)
+                        {
+                            tempfree=tempfree->next;
+                        }
+                        tempfree->next=prevfree->next;
+                        return 1;
+                    }
+                }
+            }
+        }
+        return 1;
+    }
+    else /* Worst Fit */
+    {
+        if(headfree==NULL)
+        {
+            printf("\nNo Free Space Available\n");
+            return 1;
+        }
+        else
+        {
+            tempfree=headfree;
+            if(tempfree->next==NULL)
+            {
+                if((tempfree->ending-tempfree->starting) >=a)
+                {
+                    x=tempfree->ending-tempfree->starting;
+                    allocateused(prevfree->starting,prevfree->ending,a,c);
+                    headfree=NULL;
+                    return 1;
+                }
+                else
+                {
+                    printf("\nNo Free Space Available\n");
+                    return 1;
+                }
+            }
+            else
+            {
+                x=0;
+                prevfree=NULL;
+                do
+                {
+                    y=tempfree->ending-tempfree->starting;
+                    if(x<=y && y>=a)
+                    {
+                        x=y;
+                        prevfree=tempfree;
+                    }
+                    tempfree=tempfree->next;
+                }while(tempfree!=NULL);
+
+                if(prevfree==NULL)
+                {
+                    printf("\nNo Free Space Available\n");
+                     return 0;
+                }
+                else
+                {
+                    allocateused(prevfree->starting,prevfree->ending,a,c);
+                    tempfree=headfree;
+                    if(prevfree==headfree)
+                    {
+                        headfree=prevfree->next;
+                         return 1;
+                    }
+                    else
+                    {
+                        while(tempfree->next!=prevfree)
+                        {
+                            tempfree=tempfree->next;
+                        }
+                        tempfree->next=prevfree->next;
+                         return 1;
+                    }
+                }
+            }
+            return 1;
+        }
+    }
+}
+
+void deleteused(int a)
+{
+    if(headused==NULL)
+    {
+        printf("No Process Exist\n");
+        return;
+    }
+    else
+    {
+        tempused=headused;
+        if(tempused->pid==a)
+        {
+            if(tempused->next!=NULL)
+            {
+            allocatfree(tempused->starting,tempused->ending);
+            headused=tempused->next;
+            return;
+            }
+            else
+            {
+            allocatfree(tempused->starting,tempused->ending);
+            headused=NULL;
+            return;
+            }
+        }
+        else
+        {
+            while(tempused->pid!=a && tempused->next!=NULL)
+            {
+                prevused=tempused;
+                tempused=tempused->next;
+            }
+            if(tempused->next!=NULL)
+            {
+                allocatfree(tempused->starting,tempused->ending);
+                prevused->next=tempused->next;
+            }
+            else if(tempused->next==NULL && tempused->pid==a)
+            {
+                allocatfree(tempused->starting,tempused->ending);
+                prevused->next=NULL;
+            }
+            else if(tempused->next==NULL && tempused->pid!=a)
+            {
+                printf("No process With Given Pid Were Found.\n");
+            }
+            return;
+        }
+    }
+}
+
+int mergefree(int a,int b)
+{
+    int x,i,y,z;
+    struct freememory *t1,*t2;
+    t1=(struct freememory *)malloc(sizeof(struct freememory));
+    t2=(struct freememory *)malloc(sizeof(struct freememory));
+    if(b==1)
+    {
+        tempfree=headfree;
+        prevfree=NULL;
+        while(tempfree!=NULL)
+        {
+            i=0;
+            fm1=tempfree;
+            x=fm1->starting;
+            while(fm1!=NULL && x==fm1->starting && i<a)
+            {
+                i=i+fm1->ending-fm1->starting;
+                x=fm1->ending;
+                prevfree=fm1;
+                fm1=fm1->next;
+            }
+            if(i>=a)
+            {
+                if(fm1==NULL)
+                {
+                    tempfree->ending=tempfree->starting+i;
+                    tempfree->next=NULL;
+                }
+                else
+                {
+                    tempfree->ending=tempfree->starting+i;
+                    tempfree->next=prevfree;
+                }
+                return 1;
+            }
+            tempfree=tempfree->next;
+        }
+        if(tempfree==NULL)
+        {
+            return 0;
+        }
+    }
+    else if(b==2)
+    {
+        y=99999;
+        tempfree=headfree;
+        prevfree=NULL;
+        t1=NULL;
+        t2=NULL;
+        while(tempfree->next!=NULL)
+        {
+            i=0;
+            fm1=tempfree;
+            x=fm1->starting;
+            while(fm1!=NULL && x==fm1->starting && i<a)
+            {
+                i=i+fm1->ending-fm1->starting;
+                x=fm1->ending;
+                prevfree=fm1;
+                fm1=fm1->next;
+            }
+            if(i>=a)
+            {
+                if(y>i)
+                {
+                    y=i;
+                    t1=tempfree;
+                    t2=prevfree;
+                }
+            }
+            tempfree=tempfree->next;
+        }
+        if(t1==NULL)
+        {
+            return 0;
+        }
+        else
+        {
+            t1->ending=t1->starting+y;
+            t1->next=t2->next;
+            return 1;
+        }
+    }
+    else
+    {
+        y=0;
+        tempfree=headfree;
+        prevfree=NULL;
+        t1=NULL;
+        t2=NULL;
+        while(tempfree->next!=NULL)
+        {
+            i=0;
+            fm1=tempfree;
+            x=fm1->starting;
+            while(fm1!=NULL && x==fm1->starting )
+            {
+                i=i+fm1->ending-fm1->starting;
+                x=fm1->ending;
+                prevfree=fm1;
+                fm1=fm1->next;
+            }
+            if(i>=a)
+            {
+                if(y<i)
+                {
+                    y=i;
+                    t1=tempfree;
+                    t2=prevfree;
+                }
+            }
+            tempfree=tempfree->next;
+        }
+        if(t1==NULL)
+        {
+            return 0;
+        }
+        else
+        {
+            t1->ending=t1->starting+y;
+            t1->next=t2->next;
+            return 1;
+        }
+    }
+}
+
+void main()
+{
+    int a,b,c,d,e,f;
+    prevfree=(struct freememory * )malloc(sizeof(struct freememory));
+    tempfree=(struct freememory * )malloc(sizeof(struct freememory));
+    char ch='y';
+    while(ch=='y')
+    {
+    printf("\n1.Add Free Memory\n2.Add Process\n3.Terminate Process\n4.Current Allocation\n5.Exit\n");
+    scanf("%d",&a);
+    switch(a)
+    {
+    case 1:
+    {
+    printf("\nEnter Starting Address : ");
+    scanf("%d",&b);
+    printf("Enter Ending Address : ");
+    scanf("%d",&c);
+    allocatfree(b,c);
+    break;
+    }
+    case 2:
+    {
+    printf("\nEnter PID : ");
+    scanf("%d",&b);
+    printf("\nEnter Memory Required : ");
+    scanf("%d",&c);
+    printf("1.First Fit\n2.Best Fit\n3.Worst Fit\n");
+    scanf("%d",&d);
+    e=findfree(c,d,b);
+    if(e==0)
+    {
+        f=mergefree(c,d);
+    }
+    if(f==1)
+    {
+        e=findfree(c,d,b);
+    }
+    break;
+    }
+    case 3:
+    {
+    printf("\nEnter Pid : ");
+    scanf("%d",&b);
+    deleteused(b);
+    break;
+    }
+    case 4:
+    {
+    printf("\n-------- Free Memory ---------------\n");
+    travelfree();
+    printf("\n-------- Allocated Memory -----------\n");
+    travelused();
+    break;
+    }
+    case 5:
+    {
+    ch='n';
+    break;
+    }
+    }
+    }
+    return ;
+}

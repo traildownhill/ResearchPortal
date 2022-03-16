@@ -1,0 +1,117 @@
+@media screen and (max-width: 800px) 
+{
+    .left, .main, .right {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    }
+  }
+body{
+    background-image: url("../sources/1014.jpg");
+    background-size: cover;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+body::before{
+    background-image: url("../sources/1014.jpg");
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.nav{
+    padding-left: 84%;
+    padding-top: 2%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.search{
+    margin: auto;
+    width: 60%;
+    height: 40%;
+    /*border: 3px solid green;*/
+    padding-top: 13%;
+    padding-left: 5%;
+}
+
+.heading{
+    display:inline-flex;
+}
+
+label
+{
+    text-decoration-color: white;
+}
+
+#txtsearch{
+    width: 90%;
+    height: 20%;
+    border-radius: 5px 0 0 5px;
+    font-family: system-ui;
+}
+
+#search{
+    height: 20%;
+    width: 10%;
+    border-radius: 0 5px 5px 0;
+    transition-duration: 0.3s;
+    font-family: system-ui;
+}
+
+#search:hover{
+    background-color: goldenrod;
+    color: white;
+}
+
+#logo{
+    width: 10%;
+    height: 21%;
+}
+
+#respo{
+    color: goldenrod;
+    padding-left: 1%;
+    font-family: system-ui;
+}
+
+
+#logout, #insert{
+    height: 5%;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    font-family: system-ui;
+}
+
+#logout:hover, #insert:hover{
+    background-color: goldenrod;
+    color: white;
+}
+
+.btn{
+    position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: pink;
+          font-size: 20px;
+          color: white;
+          padding: 10px 30px;
+          cursor: pointer;         
+        }
+        #popUpBox{
+          width: 500px;
+          overflow: hidden;
+          background: pink;
+          box-shadow: 0 0 10px black;
+          border-radius: 10px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+          padding: 10px;
+          text-align: center;
+          display: none;
+        }

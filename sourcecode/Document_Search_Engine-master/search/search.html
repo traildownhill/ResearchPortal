@@ -1,0 +1,474 @@
+<html>
+<head>
+<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Search Engine</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+   <!-- Material Design Lite -->
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<style>
+
+
+<!--.webdesigntuts-workshop {
+
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}-->
+
+.webdesigntuts-workshop:before,
+.webdesigntuts-workshop:after {
+	content: '';
+	display: block;	
+	height: 1px;
+	left: 50%;
+	margin: 0 0 0 -400px;
+	position: absolute;
+	width: 800px;
+}
+
+.webdesigntuts-workshop:before {
+	background: #444;
+	background: -webkit-linear-gradient(left, #d3d3d3, #444, #151515);
+	background: -moz-linear-gradient(left, #d3d3d3, #444, #151515);
+	background: -o-linear-gradient(left, #151515, #444, #151515);
+	background: -ms-linear-gradient(left, #151515, #444, #151515);
+	background: linear-gradient(left, #d3d3d3, #444, #151515);
+	top: 192px;
+}
+
+.webdesigntuts-workshop:after {
+	background: #000;
+	background: -webkit-linear-gradient(left, #151515, #000, #151515);	
+	background: -moz-linear-gradient(left, #151515, #000, #151515);	
+	background: -o-linear-gradient(left, #151515, #000, #151515);	
+	background: -ms-linear-gradient(left, #151515, #000, #151515);	
+	background: linear-gradient(left, #151515, #000, #151515);	
+	top: 191px;
+}
+
+.webdesigntuts-workshop form {
+	background: #AAAAAA;
+	background: -webkit-linear-gradient(#939393, #111);
+	background: -moz-linear-gradient(#1b1b1b, #111);
+	background: -o-linear-gradient(#1b1b1b, #111);
+	background: -ms-linear-gradient(#1b1b1b, #111);
+	background: linear-gradient(#1b1b1b, #111);
+	border: 1px solid #000;
+	border-radius: 5px;
+	box-shadow: inset 0 0 0 1px #272727;
+	display: inline-block;
+	font-size: 0px;
+	margin: 150px auto 0;
+	padding: 20px;
+	position: relative;
+	z-index: 1;
+}
+
+.webdesigntuts-workshop input {
+	background: #d3d3d3;
+	background: -webkit-linear-gradient(#333, #222);	
+	background: -moz-linear-gradient(#333, #222);	
+	background: -o-linear-gradient(#333, #222);	
+	background: -ms-linear-gradient(#333, #222);	
+	background: linear-gradient(#333, #222);	
+	border: 1px solid #444;
+	border-radius: 5px 0 0 5px;
+	box-shadow: 0 2px 0 #000;
+	color: #d3d3d3;
+	display: block;
+	float: left;
+	font-family: 'Cabin', helvetica, arial, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	height: 40px;
+	margin: 0;
+	padding: 0 10px;
+	text-shadow: 0 -1px 0 #000;
+	width: 200px;
+}
+
+.ie .webdesigntuts-workshop input {
+	line-height: 40px;
+}
+
+.webdesigntuts-workshop input::-webkit-input-placeholder {
+   color: #888;
+}
+
+.webdesigntuts-workshop input:-moz-placeholder {
+   color: #888;
+}
+
+.webdesigntuts-workshop input:focus {
+	-webkit-animation: glow 800ms ease-out infinite alternate;
+	-moz-animation: glow 800ms ease-out infinite alternate;
+	-o-animation: glow 800ms ease-out infinite alternate;
+	-ms-animation: glow 800ms ease-out infinite alternate;
+	animation: glow 800ms ease-out infinite alternate;
+	background: #d3d3d3;
+	background: -webkit-linear-gradient(#d3d3d3, #222922);
+	background: -moz-linear-gradient(#333933, #222922);
+	background: -o-linear-gradient(#333933, #222922);
+	background: -ms-linear-gradient(#333933, #222922);
+	background: linear-gradient(#333933, #222922);
+	border-color: #393;
+	box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+	color: #efe;
+	outline: none;
+}
+
+.webdesigntuts-workshop input:focus::-webkit-input-placeholder { 
+	color: #efe;
+}
+
+.webdesigntuts-workshop input:focus:-moz-placeholder {
+	color: #efe;
+}
+
+.webdesigntuts-workshop button {
+	background: #d3d3d3;
+	background: -webkit-linear-gradient(#d3d3d3, #222);
+	background: -moz-linear-gradient(#333, #222);
+	background: -o-linear-gradient(#333, #222);
+	background: -ms-linear-gradient(#333, #222);
+	background: linear-gradient(#333, #222);
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	-o-box-sizing: content-box;
+	-ms-box-sizing: content-box;
+	box-sizing: content-box;
+	border: 1px solid #444;
+	border-left-color: #000;
+	border-radius: 0 5px 5px 0;
+	box-shadow: 0 2px 0 #000;
+	color: #fff;
+	display: block;
+	float: left;
+	font-family: 'Cabin', helvetica, arial, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	height: 40px;
+	line-height: 40px;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	text-shadow: 0 -1px 0 #000;
+	width: 80px;
+}	
+
+.webdesigntuts-workshop button:hover,
+.webdesigntuts-workshop button:focus {
+	background: #d3d3d3;
+	background: -webkit-linear-gradient(#393939, #292929);	
+	background: -moz-linear-gradient(#393939, #292929);	
+	background: -o-linear-gradient(#393939, #292929);	
+	background: -ms-linear-gradient(#393939, #292929);	
+	background: linear-gradient(#393939, #292929);
+	color: #5f5;
+	outline: none;
+}
+
+.webdesigntuts-workshop button:active {
+	background: #292929;
+	background: -webkit-linear-gradient(#393939, #292929);
+	background: -moz-linear-gradient(#393939, #292929);
+	background: -o-linear-gradient(#393939, #292929);
+	background: -ms-linear-gradient(#393939, #292929);
+	background: linear-gradient(#393939, #292929);
+	box-shadow: 0 1px 0 #000, inset 1px 0 1px #222;
+	top: 1px;
+}
+
+@-webkit-keyframes glow {
+    0% {
+		border-color: #0000ff;
+		box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+    }	
+    100% {
+		border-color: #1a1aff;
+		box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
+    }
+}
+
+@-moz-keyframes glow {
+    0% {
+		border-color: #0000ff;
+		box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,255,0,.1), 0 2px 0 #000;
+    }	
+    100% {
+		border-color: #1a1aff;
+		box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
+    }
+}
+
+@-o-keyframes glow {
+    0% {
+		border-color: #0000ff;
+		box-shadow: 0 0 5px rgba(0,0,255,.2), inset 0 0 5px rgba(0,0,255,.1), 0 2px 0 #000;
+    }	
+    100% {
+		border-color: #1a1aff;
+		box-shadow: 0 0 20px rgba(0,0,255,.6), inset 0 0 10px rgba(0,0,255,.4), 0 2px 0 #000;
+    }
+}
+
+@-ms-keyframes glow {
+    0% {
+		border-color: #0000ff;
+		box-shadow: 0 0 5px rgba(0,0,255,.2), inset 0 0 5px rgba(0,0,255,.1), 0 2px 0 #000;
+    }	
+    100% {
+		border-color: #1a1aff;
+		box-shadow: 0 0 20px rgba(0,0,255,.6), inset 0 0 10px rgba(0,0,255,.4), 0 2px 0 #000;
+    }
+}
+
+@keyframes glow {
+    0% {
+		border-color: #0000ff;
+		box-shadow: 0 0 5px rgba(0,255,0,.2), inset 0 0 5px rgba(0,0,255,.1), 0 2px 0 #000;
+    }	
+    100% {
+		border-color: #1a1aff;
+		box-shadow: 0 0 20px rgba(0,0,255,.6), inset 0 0 10px rgba(0,0,255,.4), 0 2px 0 #000;
+    }
+}
+.form-style-8{
+    font-family: 'Open Sans Condensed', arial, sans;
+    width: 500px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin: 50px auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+
+}
+.form-style-8 h2{
+    background: #4D4D4D;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #797979;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 20px;
+    margin: -30px -30px 30px -30px;
+}
+.form-style-8 input[type="text"],
+.form-style-8 input[type="date"],
+.form-style-8 input[type="datetime"],
+.form-style-8 input[type="email"],
+.form-style-8 input[type="number"],
+.form-style-8 input[type="search"],
+.form-style-8 input[type="time"],
+.form-style-8 input[type="url"],
+.form-style-8 input[type="password"],
+.form-style-8 textarea,
+.form-style-8 select 
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+}
+.form-style-8 textarea{
+    resize:none;
+    overflow: hidden;
+}
+.form-style-8 input[type="button"], 
+.form-style-8 input[type="submit"]{
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    background-color: #2CBBBB;
+    border: 1px solid #27A0A0;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.form-style-8 input[type="button"]:hover, 
+.form-style-8 input[type="submit"]:hover {
+    background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+    background-color:#34CACA;
+}
+	
+	@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.asss{
+    margin-top: 5%;
+    
+}
+
+
+
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Search Engine.......</a>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li class="active "><a href="login.html">Login</a></li>
+      
+    </ul>
+  </div>
+</nav>	
+		  
+	  
+	  <div class="container asss">
+	  
+
+	  
+	  
+  <div class="jumbotron">
+    		
+
+<form method="get" action="" id="form">	
+ 
+		
+		<input type="text"  placeholder="Search With First Or Last Name" style="width:250px;" name='key'>		    	
+		 <select name="type">
+  <option value="image/jpeg">image/jpeg</option>
+  <option value="text/docx">text/docx</option>
+  <option value="text/pdf">text/pdf</option>
+  <option value="any">any</option>
+</select>
+		<input id="submit" type='button' value='submit' class="btn btn-primary" style="width:150px;"  name='submit' >
+
+</form>
+	
+</div>
+
+
+
+ 
+
+
+<div id="tabresult">
+    
+</div>
+<ul class="pager">
+  <li class="previous" id="prev"><a href="#">Previous</a></li>
+  <li class="next" id="next"><a href="#">Next</a></li>
+</ul>
+</div>
+
+</div>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+var doc;
+var i=0;
+var p;
+var out;
+
+
+
+    $(document).ready(function(){
+prev.onclick = function() {
+if(i>=0){
+   i=i-5;
+	out = "";
+
+    for(p = i; p < i+5 && p>=0 && p<=doc.length; p++) {
+        out += "<div class=\"row\"><div class=\"col-sm-4\">" + "<img  style=\"width:52%;height:35%;\" src=\"" + doc[p].image + "\">" + "</div><div class=\"col-sm-8\">"+ "<h3><b>Title:</b>" + doc[p].title + "</h3>"+ "<h4><b>Author:</b>" + doc[p].author + "</h3>"+ "<h4><b>Description:</b>" + doc[p].description + "</h3>"+ "<a class=\"btn btn-default\" role=\"button\" href=\"" + doc[p].link  + "\">Click To Download</a></h4></div></div></div><hr><br>";
+    }
+	    document.getElementById("tabresult").innerHTML = out;
+	
+	console.log("prev",i);
+	}
+};
+next.onclick = function() {
+     if(i<=doc.length){
+	out = "";
+	i=i+5;
+     for(p = i; p < i+5 && p<doc.length; p++) {
+        out += "<div class=\"row\"><div class=\"col-sm-4\">" + "<img  style=\"width:52%;height:35%;\" src=\"" + doc[p].image + "\">" + "</div><div class=\"col-sm-8\">"+ "<h3><b>Title:</b>" + doc[p].title + "</h3>"+ "<h4><b>Author:</b>" + doc[p].author + "</h3>"+ "<h4><b>Description:</b>" + doc[p].description + "</h3>"+ "<a class=\"btn btn-default\" role=\"button\" href=\"" + doc[p].link  + "\">Click To Download</a></h4></div></div></div><hr><br>";
+    }
+	    document.getElementById("tabresult").innerHTML = out;
+	
+		console.log("next",i);
+		}
+};
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            $.ajax({
+                url: 'http://localhost/searcheng/myapp/public/search', // url where to submit the request
+                type : "GET", // type of action POST || GET
+                dataType : 'text', // data type
+                data : $("#form").serialize(), // post data || get data
+	 		    
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+             //  console.log(result[0]);
+					
+	doc= JSON.parse(result);
+	
+	
+	
+	
+
+    var out = "";
+    for(i = 0; i < 5&& i<doc.length; i++) {
+        out += "<div class=\"row\"><div class=\"col-sm-4\">" + "<img  style=\"width:52%;height:35%;\" src=\"" + doc[i].image + "\">" + "</div><div class=\"col-sm-8\">"+ "<h3><b>Title:</b>" + doc[i].title + "</h3>"+ "<h4><b>Author:</b>" + doc[i].author + "</h3>"+ "<h4><b>Description:</b>" + doc[i].description + "</h3>"+ "<a class=\"btn btn-default\" role=\"button\" href=\"" + doc[i].link  + "\">Click To Download</a></h4></div></div></div><hr><br>";
+    
+	}
+	
+    i=0;
+    document.getElementById("tabresult").innerHTML = out;
+
+    
+					
+					
+					},
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                }
+            })
+        });
+    });
+</script>
+</body>
+</html>

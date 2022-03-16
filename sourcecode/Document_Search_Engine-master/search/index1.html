@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <style type="text/css">
+body {
+	background: #161616 url(pattern_40.gif) top left repeat;
+	margin: 0;
+	padding: 0;
+	font: 12px normal Verdana, Arial, Helvetica, sans-serif;
+	height: 100%;
+	color:#fff;
+}
+
+* {margin: 0; padding: 0; outline: none;}
+
+img {border: none;}
+
+a { 
+	text-decoration:none; 
+	color:#00c6ff;
+}
+
+h1 {
+	font: 4em normal Arial, Helvetica, sans-serif;
+	padding: 20px;	margin: 0;
+	text-align:center;
+	color:#bbb;
+}
+
+h1 small{
+	font: 0.2em normal  Arial, Helvetica, sans-serif;
+	text-transform:uppercase; letter-spacing: 0.2em; line-height: 5em;
+	display: block;
+}
+
+h2 {
+	font: 2em normal Arial, Helvetica, sans-serif;
+	padding-bottom:30px;
+	color:#fff;
+	display:block;
+}
+
+h3 {
+	font: 1em Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#fff;
+	display:block;
+	padding:10px;
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto; 
+	overflow: hidden;
+	position:relative;
+	padding-bottom:50px;
+}
+
+/* FIRST EXAMPLE */
+#panel { 
+	width:300px;
+	list-style:none; 
+	padding-top:30px;
+	display:inline-block;
+}
+
+#panel li {  
+	border-radius:3px 3px 3px 3px; 
+	margin-top:5px;
+	width:150px;
+	background: #000000;
+	background: -moz-linear-gradient(top, #161616 0%, #000000 100%);
+	background: -webkit-linear-gradient(top, #161616 0%,#000000 100%);
+	background: -o-linear-gradient(top, #161616 0%,#000000 100%);
+	border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333;
+}
+
+#panel li.animation { 
+	-moz-transition: all 0.4s ease-in-out; 
+	-moz-transform:translateX(0px); 
+	-o-transition: all 0.4s ease-in-out; 
+	-o-transform:translateX(0px); 
+	-webkit-transition: all 0.4s ease-in-out; 
+	-webkit-transform:translateX(0px); 
+}
+
+#panel li.animation:hover { 
+	-moz-transform:translateX(25px);
+	-o-transform:translateX(25px);
+	-webkit-transform:translateX(25px);
+}
+
+#panel li a { 
+	color:#fff; 
+	display:block; 
+	padding:10px;
+}
+
+#panel li a:hover { 
+	color:#00c6ff;
+}
+
+
+</style><!--changed-->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Zigzobs, Student Dashboard, ">
+
+    <title>Admin Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+  <script src="http://tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+  <script src="student_dashboard.js"></script>
+
+   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="background-color:#ffffff;">
+  
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Search Engine.......</a>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li class="active "><a href="search.html">Logout</a></li>
+      
+    </ul>
+  </div>
+</nav>	
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+	  <!--changed-->
+	  
+          <div id="sidebar"  class="nav-collapse " >
+	
+
+	<ul id="panel" style="margin-top:50px;">
+        <li class="animation" style="margin-left:20px;" ><a href=""><i class="fa fa-dashboard"></i>  Upload</a></li>
+        <li class="animation" style="margin-left:20px;"><a href=""> <i class="fa fa-search"></i>   Delete</a></li>
+        <li class="animation" style="margin-left:20px;"><a href=""><i class="fa fa-desktop"></i>    Update</a></li>
+
+    </ul>
+
+    </div>
+      </aside>
+      <!--sidebar end-->      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+<!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row" id = "content_goes_here">
+
+      
+              </div>
+          </section>
+      </section>
+
+      <!--main content end-->
+
+
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+
+    <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="assets/js/jquery.scrollTo.min.js"></script>
+
+    <script src="assets/js/jquery.sparkline.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="assets/js/common-scripts.js"></script>
+    
+    <script type="text/javascript" src="assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+
+    <!--script for this page-->
+    <script src="assets/js/sparkline-chart.js"></script>    
+  <script src="assets/js/zabuto_calendar.js"></script>  
+ 
+  <script type="text/javascript">
+        $(document).ready(function () {
+        var unique_id = $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Welcome to the world of opportunities!',
+            // (string | mandatory) the text inside the notification
+            text: '',
+            // (string | optional) the image to display on the left
+            // (bool | optional) if you want it to fade out on its own or just sit there
+            sticky: true,
+            // (int | optional) the time you want it to be alive for before fading out
+            time: '',
+            // (string | optional) the class name you want to apply to that specific message
+            class_name: 'my-sticky-class'
+        });
+
+        return false;
+        });
+  </script>
+  
+  <script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+        
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
+        });
+        
+        
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+  
+
+  </body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!-- Material Design Lite -->
+      <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Zigzobs, Student Dashboard, ">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+ <script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js'></script>
+
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+
+	
+	
+	<style type="text/css">
+.form-style-8{
+    font-family: 'Open Sans Condensed', arial, sans;
+    width: 500px;
+    padding: 30px;
+    background: #FFFFFF;
+    margin: 50px auto;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow:  0px 0px 15px rgba(0, 0, 0, 0.22);
+
+}
+.form-style-8 h2{
+    background: #4D4D4D;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed', sans-serif;
+    color: #797979;
+    font-size: 18px;
+    font-weight: 100;
+    padding: 20px;
+    margin: -30px -30px 30px -30px;
+}
+.form-style-8 input[type="text"],
+.form-style-8 input[type="date"],
+.form-style-8 input[type="datetime"],
+.form-style-8 input[type="email"],
+.form-style-8 input[type="number"],
+.form-style-8 input[type="search"],
+.form-style-8 input[type="time"],
+.form-style-8 input[type="url"],
+.form-style-8 input[type="password"],
+.form-style-8 textarea,
+.form-style-8 select 
+{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+}
+.form-style-8 textarea{
+    resize:none;
+    overflow: hidden;
+}
+.form-style-8 input[type="button"], 
+.form-style-8 input[type="submit"]{
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    background-color: #2CBBBB;
+    border: 1px solid #27A0A0;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.form-style-8 input[type="button"]:hover, 
+.form-style-8 input[type="submit"]:hover {
+    background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+    background-color:#34CACA;
+}
+	
+
+
+body {
+	background: #161616 url(pattern_40.gif) top left repeat;
+	margin: 0;
+	padding: 0;
+	font: 12px normal Verdana, Arial, Helvetica, sans-serif;
+	height: 100%;
+	color:#fff;
+}
+
+* {margin: 0; padding: 0; outline: none;}
+
+img {border: none;}
+
+a { 
+	text-decoration:none; 
+	color:#00c6ff;
+}
+
+h1 {
+	font: 4em normal Arial, Helvetica, sans-serif;
+	padding: 20px;	margin: 0;
+	text-align:center;
+	color:#bbb;
+}
+
+h1 small{
+	font: 0.2em normal  Arial, Helvetica, sans-serif;
+	text-transform:uppercase; letter-spacing: 0.2em; line-height: 5em;
+	display: block;
+}
+
+h2 {
+	font: 2em normal Arial, Helvetica, sans-serif;
+	padding-bottom:30px;
+	color:#fff;
+	display:block;
+}
+
+h3 {
+	font: 1em Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#fff;
+	display:block;
+	padding:10px;
+}
+
+.container {
+	width: 960px;
+	margin: 0 auto; 
+	overflow: hidden;
+	position:relative;
+	padding-bottom:50px;
+}
+
+/* FIRST EXAMPLE */
+#panel { 
+	width:300px;
+	list-style:none; 
+	padding-top:30px;
+	display:inline-block;
+}
+
+#panel li {  
+	border-radius:3px 3px 3px 3px; 
+	margin-top:5px;
+	width:150px;
+	background: #000000;
+	background: -moz-linear-gradient(top, #161616 0%, #000000 100%);
+	background: -webkit-linear-gradient(top, #161616 0%,#000000 100%);
+	background: -o-linear-gradient(top, #161616 0%,#000000 100%);
+	border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333;
+}
+
+#panel li.animation { 
+	-moz-transition: all 0.4s ease-in-out; 
+	-moz-transform:translateX(0px); 
+	-o-transition: all 0.4s ease-in-out; 
+	-o-transform:translateX(0px); 
+	-webkit-transition: all 0.4s ease-in-out; 
+	-webkit-transform:translateX(0px); 
+}
+
+#panel li.animation:hover { 
+	-moz-transform:translateX(25px);
+	-o-transform:translateX(25px);
+	-webkit-transform:translateX(25px);
+}
+
+#panel li a { 
+	color:#fff; 
+	display:block; 
+	padding:10px;
+}
+
+#panel li a:hover { 
+	color:#00c6ff;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style><!--changed-->
+
+
+    <title>Admin Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+ 
+  
+
+
+    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">    
+    
+    <!-- Custom styles for this template -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/style-responsive.css" rel="stylesheet">
+
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body style="background-color:#ffffff;">
+  
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Admin Dashboard.......</a>
+    </div>
+    <ul class="nav navbar-nav pull-right">
+      <li class="active "><a href="search.html">Logout</a></li>
+      
+    </ul>
+  </div>
+</nav>	
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+	  <!--changed-->
+	  
+          <div id="sidebar"  class="nav-collapse " >
+	
+
+	<ul id="panel" style="margin-top:50px;">
+        <li class="animation" style="margin-left:20px;" ><a href="admin.html"><i class="fa fa-dashboard"></i>  Home</a></li>
+        <li class="animation" style="margin-left:20px;"><a href="upload.html"><i class="fa fa-desktop"></i>    Upload</a></li>
+<li class="animation" style="margin-left:20px;" ><a href="update.html"><i class="fa fa-dashboard"></i> Update</a></li>
+
+    </ul>
+
+    </div>
+      </aside>
+      <!--sidebar end-->      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+<!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+              <div class="row" id = "content_goes_here">
+<div class="page-content">
+		<div class="form-style-8">
+  <h2>UPLOAD A DOCUMENT!!!</h2>
+  <form id="form"  method="post"  >
+    <input type="text"  id="title" name="title" placeholder="TITLE" />
+	<input type="text" id="author" name="author" placeholder="AUTHOR" />
+	<input type="text" id="type" name="type" placeholder="TYPE" />
+	<input type="text" id="keywords" name="keywords" placeholder="TAGS" />
+	<textarea  placeholder="DESCRIPTION" onkeyup="adjust_textarea(this)" id="description" name="description"></textarea>
+     <input type="file" id="image" name="file1"><br>
+	 <input type="file" id="doc" name="file2">
+     
+	<!-- <input type="file" name="img">-->
+	<br>
+    <input type="submit" id="submit" value="UPLOAD" />
+  </form>
+  
+   
+</div>
+<div id="tabresult">
+    
+</div>
+		</div>
+      
+              </div>
+          </section>
+      </section>
+
+      <!--main content end-->
+
+
+  </section>
+<script type="text/javascript">
+//auto expand textarea
+function adjust_textarea(h) {
+    h.style.height = "20px";
+    h.style.height = (h.scrollHeight)+"px";
+}
+</script>
+  
+<script>
+    $(document).ready(function(){
+        // click on button submit
+		
+		var imagedata;
+		var docdata;
+		
+		
+		
+			var handleFileSelect = function(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+	var file1 = files[1];
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+			imagedata=btoa(binaryString);
+           
+             
+		};
+		
+	//if (files && file1) {
+    //    var reader2 = new FileReader();
+
+     //   reader2.onload = function(readerEvt) {
+     //       var binaryString = readerEvt.target.result;
+		//	docdata=btoa(binaryString);
+       //     console.log(docdata);			
+        //};
+
+        reader.readAsBinaryString(file);
+		       // reader2.readAsBinaryString(file1);
+    }
+};
+
+
+
+		var handleFileSelect2 = function(evt) {
+    var files = evt.target.files;
+    var file = files[0];
+  
+
+    if (files && file) {
+        var reader = new FileReader();
+
+        reader.onload = function(readerEvt) {
+            var binaryString = readerEvt.target.result;
+			docdata=btoa(binaryString); 
+		};
+		
+	//if (files && file1) {
+    //    var reader2 = new FileReader();
+
+     //   reader2.onload = function(readerEvt) {
+     //       var binaryString = readerEvt.target.result;
+		//	docdata=btoa(binaryString);
+       //     console.log(docdata);			
+        //};
+
+        reader.readAsBinaryString(file);
+		    
+    }
+};
+
+if (window.File && window.FileReader && window.FileList && window.Blob) {
+    document.getElementById('image').addEventListener('change', handleFileSelect, false);
+	document.getElementById('doc').addEventListener('change', handleFileSelect2, false);
+} else {
+    alert('The File APIs are not fully supported in this browser.');
+}
+		
+		
+		
+		
+		
+        $("#submit").on('click', function(){
+			
+
+			
+			var dac=  $('#image').val();
+		    var ff=   $('#doc').val();
+			console.log(dac);
+			console.log(ff);
+			var image=dac.split('\\').pop();
+			var doc=ff.split('\\').pop();
+			var ff1="C:\\xampp\\htdocs\\searcheng\\myapp\\public\\document\\thumbnail\\"+image;
+			var ff2="C:\\xampp\\htdocs\\searcheng\\myapp\\public\\document\\doc\\"+doc;
+            var form = new FormData();
+		    var  title= $("#title").val();
+			var  author=$("#author").val();
+			var  type=$("#type").val();
+			var  keywords=$("#keywords").val();
+			var description=$("#description").val();
+			var out ="{ \"title\":\""+title+"\",\"author\":\""+author+"\",\"keywords\":\""+keywords+"\",\"type\":\""+type+"\",\"description\":\""+description+"\",\"image\":\""+image+"\",\"imagedata\":\""+imagedata+"\",\"docdata\":\""+docdata+"\",\"doc\":\""+doc+"\"}";
+         // console.log(out);
+		// var doc=JSON.parse(out);
+		//console.log("doc",doc);
+	
+       // var myObject, newpath;
+       // myObject = new ActiveXObject("Scripting.FileSystemObject");
+       // myObject.CopyFile (dac,ff1);
+		//myObject.CopyFile (ff,ff2);
+		
+		
+ //var file_data1=$("#image").prop("files")[0];
+// var file_data2=$("#doc").prop("files")[0];
+//form.append("file_0",file_data1);
+//form.append("file_1",file_data2);
+//var c=0;
+// $('input[type="file"]').each(function(){
+ //       file_data = $('input[type="file"]')[c].files; // for multiple files
+//
+  //   for(var i = 0;i<file_data.length;i++){
+  //    form.append("file_"+c, file_data[i]);
+//		// console.log(file_data[i]);
+ //    }
+  //  c++;
+ //});
+ //console.log("form",form);
+		
+	
+	// var formData = new FormData($(this)[0]);
+	//	 console.log($("#form").serialize());
+            // send ajax
+          $.ajax({
+		     
+            
+              url: 'http://localhost/searcheng/myapp/public/upload', // url where to submit the request
+              type : "POST", // type of action POST || GET
+               dataType : 'text', // data type
+			   data :out, // post data || get data
+               success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+             console.log(result);
+		 var messsage = "document uploaded";
+					document.getElementById("tabresult").innerHTML = message;
+					
+	//var doc1= JSON.parse(result);
+	
+	//console.log("doc1",doc1);
+	
+	
+	  
+
+    
+					
+					
+					},
+				//	processData: false,
+                //    contentType: false,
+				//	mimeType: 'multipart/form-data',
+		
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                },
+				
+		
+            })
+        });
+    });
+</script>
+  
+  
+  
+
+  </body>
+</html>
